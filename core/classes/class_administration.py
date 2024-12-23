@@ -14,7 +14,6 @@ from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementTeam
 from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementDirectoryConnector import ModelAdministrationUserManagementDirectoryConnector
 from core.models.SQLAlchemy.administration.ModelAdministrationAuthentication import ModelAdministrationAuthenticationProfile, ModelAdministrationAuthenticationSecQuestion
 from core.models.SQLAlchemy.ModelHistory import model_history_login_insert, ModelHistoryLogin
-from core.models.SQLAlchemy.ModelNotifications import model_notification_alert_insert, ModelNotificationAlert
 from core.models.Pydantic.internal import pydantic_request_login_auth
 
 # class
@@ -774,10 +773,6 @@ class class_administration:
                     f"*** Unable to authenticate user | event=login | login_name={login_name} | "
                     f"source_ip_address={source_ip_address} | reason={reason}"
                 )
-                model_notification_alert_insert.init(
-                    level="alert", event="login", pydantic_data=pydantic_data, 
-                    message=reason
-                )
                 return False
             
             validation_status = False
@@ -901,42 +896,4 @@ class class_administration:
         except DBAPIError as e:
             service_logger().error(f"SQLAlchemy error retrieving login history: {e}")
             return []
-
-    def return_notifications_all(self):
-        try:
-            notifications_all = dbprovider.query(ModelNotificationAlert).order_by(ModelNotificationAlert.created_on.desc()).all()
-            return notifications_all
-        except DBAPIError as e:
-            service_logger().error(f"SQLAlchemy error retrieving notifications: {e}")
-            return []
-
-    def return_notifications_unseen(self):
-        try:
-            notifications_unseen = dbprovider.query(ModelNotificationAlert).filter(ModelNotificationAlert.seen != True).order_by(ModelNotificationAlert.created_on.desc()).all()
-            return notifications_unseen
-        except DBAPIError as e:
-            service_logger().error(f"SQLAlchemy error retrieving notifications: {e}")
-            return []
         
-    def patch_notification_seen(self, id: int) -> bool:
-        try:
-            notification = dbprovider.query(ModelNotificationAlert).filter(ModelNotificationAlert.id == id).one_or_none()
-            if notification:
-                notification.patch_object_seen(True)
-                return True
-        except DBAPIError as e:
-            service_logger().error(f"SQLAlchemy error retrieving notifications: {e}")
-            return False
-        
-    def patch_notification_seen_all(self) -> bool:
-        try:
-            notifications_unseen = dbprovider.query(ModelNotificationAlert).filter(ModelNotificationAlert.seen != True).all()
-            if notifications_unseen:
-                for notification in notifications_unseen:
-                    notification.seen = True
-                    
-                dbprovider.commit()
-                return True
-        except DBAPIError as e:
-            service_logger().error(f"SQLAlchemy error retrieving notifications: {e}")
-            return False

@@ -12,16 +12,7 @@ from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementUser
 from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementDirectoryConnector import ModelAdministrationUserManagementDirectoryConnector
 from core.models.SQLAlchemy.administration.ModelAdministrationAuthentication import ModelAdministrationAuthenticationProfile, ModelAdministrationAuthenticationSecQuestion
 from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementTeam import ModelAdministrationUserManagementTeam
-from core.models.SQLAlchemy.sensor.ModelSensorIncidents import ModelSensorIncidents
 from core.models.SQLAlchemy.ModelHistory import ModelHistoryLogin
-from core.models.SQLAlchemy.ModelNotifications import ModelNotificationAlert
-
-from core.models.SQLAlchemy.cyberpot.ModelCyberpotDecoys import ModelCyberPotDecoys
-from core.models.SQLAlchemy.cyberpot.ModelCyberpotDeployments import ModelCyberPotDeployments
-from core.models.SQLAlchemy.cyberpot.ModelCyberpotResources import ModelCyberPotResources
-
-from core.models.SQLAlchemy.configuration.ModelConfiguration import ModelConfiguration
-from core.models.SQLAlchemy.configuration.ModelConfigurationSegment import ModelConfigurationSegment
 
 # class
 from core.classes.class_configuration import class_configuration

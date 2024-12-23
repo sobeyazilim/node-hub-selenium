@@ -167,9 +167,6 @@ async def index(request: Request):
             # get public id
             public_id = class_base().return_auth_token_public_id(token)
 
-            # notifications not seen
-            notifications_unseen = class_administration().return_notifications_unseen()
-
             # toastr
             success_message = request.session.pop("success_message", None)
             error_message = request.session.pop("error_message", None)
@@ -183,7 +180,6 @@ async def index(request: Request):
                     "current_user": class_administration().return_login_name_by_public_id(public_id),
                     "current_user_role": class_administration().return_user_role_by_public_id(public_id),
                     'system_info' : class_system().return_system_resource_usage(),
-                    'notifications_unseen': notifications_unseen,
                     "success_message": success_message, 
                     "error_message": error_message, 
                     "warning_message": warning_message
