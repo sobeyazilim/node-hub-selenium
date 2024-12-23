@@ -1,0 +1,41 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+websockets
+python-multipart
+jinja2
+pytz
+tzlocal
+asyncio
+netifaces
+psutil
+httpx
+pexpect
+datetime
+uuid
+pyotp
+user_agents
+get-mac
+ldap3
+sourcedefender
+psycopg2-binary
+cryptography
+pydantic
+pydantic[email]
+#pyjwt  # HMAC (HS256): symetric
+pyjwt[crypto] # RSA (RS256): asymetric (public/private key)
+#python-jose[cryptography] # vulnarability ! do not use
+bcrypt==4.0.1
+passlib[bcrypt]
+apscheduler
+pytz
+typing_extensions
+itsdangerous
+scapy
+python-nmap
+aiofiles
+#####
+lxml
+pandas
+openpyxl
+base58

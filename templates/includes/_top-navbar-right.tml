@@ -1,0 +1,163 @@
+<!-- Fullscreen -->
+<button id="fullscreen-toggle" class="btn btn-outline-light border-0 rounded-0 shadow-0 d-none d-md-flex align-items-center h-100">
+    <i class="bx bx-fullscreen fs-2"></i> <!-- Fullscreen icon -->
+    <i class="bx bx-exit-fullscreen fs-2 d-none"></i> <!-- Exit fullscreen icon -->
+</button>
+
+<!-- Theme -->
+<button id="theme-toggle" class="btn btn-outline-light border-0 rounded-0 shadow-0 d-flex align-items-center h-100">
+        <i class="bx bx-sun fs-2"></i> <!-- Light mode icon -->
+        <i class="bx bx-moon fs-2 d-none"></i> <!-- Dark mode icon -->
+</button>
+
+<!-- User -->
+<div class="dropdown d-flex alig-items-center h-100">
+
+    <button class="btn btn-outline-light border-0 border-start border-secondary rounded-0 shadow-0 d-flex align-items-center dropdown-toggle" data-bs-toggle="dropdown"  aria-expanded="false">
+        <i class='bx bx-fingerprint fs-2' ></i> {{ current_user }}
+    </button>
+
+    <ul class="dropdown-menu bg-light p-1 rounded-0">
+
+        <li>
+            <a class="dropdown-item link-dark d-flex align-items-center px-3 text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount">
+                <i class='bx bx-key fs-4 pe-1' ></i> Change Password
+            </a>
+        </li>
+        <li>
+            <div class="dropdown-divider"></div> 
+        </li>
+        <li>
+            <a class="dropdown-item link-dark d-flex align-items-center px-3 text-decoration-none" id="logoutButton">
+                <i class='bx bx-exit fs-4 pe-1' ></i> Logout
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    // logout
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        swal({
+            title: "Logout Session?",
+            text: "You will be logged out of your session.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willLogout) => {
+            if (willLogout) {
+                // Redirect to the logout page
+                window.location.href = "/logout"; // Replace with your logout URL
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = themeToggle.querySelector('.bx-sun');
+        const moonIcon = themeToggle.querySelector('.bx-moon');
+
+        // Load the user's theme preference from localStorage
+        const currentTheme = localStorage.getItem('app-theme');
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme); // Set data-theme on <html>
+            sunIcon.classList.toggle('d-none', currentTheme === 'light');
+            moonIcon.classList.toggle('d-none', currentTheme === 'dark');
+        } else {
+            // Default theme
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            // Toggle dark mode class on the body
+            const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDarkMode ? 'light' : 'dark';
+
+            // Update localStorage with the current theme
+            localStorage.setItem('app-theme', newTheme);
+
+            // Set data-theme attribute on <html>
+            document.documentElement.setAttribute('data-theme', newTheme);
+
+            // Toggle icons visibility
+            sunIcon.classList.toggle('d-none', newTheme === 'light');
+            moonIcon.classList.toggle('d-none', newTheme === 'dark');
+        });
+
+
+        // Toggle fullscreen mode for the entire page
+        const fullscreenToggleButton = document.getElementById('fullscreen-toggle');
+
+        // Check local storage for full-screen state
+        if (localStorage.getItem('fullscreen') === 'true') {
+            enterFullscreen();
+        }
+
+        // Toggle fullscreen mode for the entire page
+        fullscreenToggleButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default action if necessary
+            toggleFullscreen();
+        });
+
+        // Listen for full-screen change events
+        document.addEventListener('fullscreenchange', updateFullscreenIcon);
+        document.addEventListener('mozfullscreenchange', updateFullscreenIcon); // Firefox
+        document.addEventListener('webkitfullscreenchange', updateFullscreenIcon); // Chrome, Safari, and Opera
+        document.addEventListener('msfullscreenchange', updateFullscreenIcon); // IE/Edge
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                enterFullscreen();
+            } else {
+                exitFullscreen();
+            }
+        }
+
+        async function enterFullscreen() {
+            const element = document.documentElement; // Fullscreen the entire document
+
+            try {
+                // Check if the requestFullscreen method is available
+                if (element.requestFullscreen) {
+                    await element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) { // Firefox
+                    await element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+                    await element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) { // IE/Edge
+                    await element.msRequestFullscreen();
+                }
+                localStorage.setItem('fullscreen', 'true'); // Store full-screen state
+            } catch (err) {
+                //console.error("Error attempting to enable full-screen mode:", err);
+            }
+        }
+
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            localStorage.setItem('fullscreen', 'false'); // Store full-screen state
+        }
+
+        function updateFullscreenIcon() {
+            if (document.fullscreenElement) {
+                fullscreenToggleButton.querySelector('.bx-fullscreen').classList.add('d-none');
+                fullscreenToggleButton.querySelector('.bx-exit-fullscreen').classList.remove('d-none');
+            } else {
+                fullscreenToggleButton.querySelector('.bx-fullscreen').classList.remove('d-none');
+                fullscreenToggleButton.querySelector('.bx-exit-fullscreen').classList.add('d-none');
+            }
+        }
+
+    });
+
+</script>

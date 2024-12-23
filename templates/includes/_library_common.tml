@@ -1,0 +1,46 @@
+<!-- Meta tags -->
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">  -->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="/static/images/siberat-icon.svg">
+
+<!-- Include Bootstrap library -->
+<link rel="stylesheet" href="/static/bootstrap/v5/bootstrap.min.css" crossorigin="anonymous">
+<script src="/static/bootstrap/v5/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<!-- Include jQuery library -->
+<script src="/static/jquery-3.6.3.min.js"></script>
+
+<!-- Include toastr CSS and JS files -->
+<link rel="stylesheet" href="/static/toastr.min.css">
+<script src="/static/toastr.min.js"></script>
+
+<!-- Include Boxicons -->
+<link rel="stylesheet" href="/static/boxicons.min.css">
+
+<!-- Lord Icon -->
+<script src="/static/lordicon.js"></script>
+
+<!-- SweetAlert -->
+<script src="/static/sweetalert.min.js"></script>
+
+<!-- Include Bootstrap tagsinput library -->
+<script src="/static/bootstrap/v5/bootstrap-tagsinput.min.js" crossorigin="anonymous"></script>
+
+<!-- Select2 -->
+<link rel="stylesheet" href="/static/select2/select2.min.css" />
+<link rel="stylesheet" href="/static/select2/select2-bootstrap-5-theme.min.css" />
+<script src="/static/select2/select2.min.js"></script>
+
+<!-- QRCode -->
+<script src="/static/qrcode.min.js"></script>
+
+<!-- ChartJS -->
+<script src="/static/chart.js"></script>
+
+<!-- Flatpicker -->
+<link rel="stylesheet" href="/static/flatpickr.min.css?build={{build_number}}">
+{# <link rel="stylesheet" type="text/css" href="/static/flatpickrdark.css?build={{build_number}}"> #}
+<script src="/static/flatpickr.min.js?build={{build_number}}"></script>

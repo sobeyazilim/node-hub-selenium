@@ -1,0 +1,38 @@
+::placeholder {
+    color: #6c757d96 !important;
+}
+
+.input-group{
+    min-height: 50px !important; 
+}
+
+.card-title {
+    background-color: #20222c24 !important;
+}
+
+[data-theme=light] .card-title {
+    background-color:#343a4024 !important;
+}
+
+.login-block__container {
+    position: relative;
+    padding: 40px 40px 20px 40px;
+    border-radius: 2px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.03);
+    margin-bottom: 30px;
+    background-color: #49505763;
+    max-width: 500px;
+    min-width: 400px;
+}
+
+[data-theme=light] .login-block__container  {
+    background-color: #fff;
+}
+
+.login-brand{
+    background: #20222c;
+}
+
+.login-brand img{   
+    height: 40vh !important;
+}

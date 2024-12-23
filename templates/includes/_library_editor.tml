@@ -1,0 +1,3 @@
+<!-- Text Editor -->
+<link rel="stylesheet" href="/static/text_editor/text_editor.pkgd.min.css">
+<script src="/static/text_editor/text_editor.pkgd.min.js"></script>

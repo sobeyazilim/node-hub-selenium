@@ -1,0 +1,9 @@
+<!-- Include CodeMirror CSS and JavaScript -->
+<link rel="stylesheet" href="/static/codemirror/codemirror.css">
+<link rel="stylesheet" href="/static/codemirror/themes.css">
+<script src="/static/codemirror/codemirror.min.js"></script>
+<script src="/static/codemirror/mode/yaml.min.js"></script>
+<script src="/static/codemirror/mode/clike.min.js"></script>
+
+<!-- Include js-yaml for YAML validation -->
+<script src="/static/libs/js-yaml.min.js"></script>

@@ -1,0 +1,46 @@
+/* start: noUiSlider General CSS */
+.noUi-connects{
+    background: #b3b3b3;
+}
+.noUi-handle.noUi-handle-lower{
+    border: 0;
+    background: hsl(200.2, 92.3%, 41%);
+    box-shadow: none;
+}
+.noUi-touch-area{
+    background: round;
+}
+.noUi-tooltip{
+    color: white !important;
+    border: 0 !important;
+    background: #222027b5 !important;
+    font-size: 12px !important;
+}
+.noUi-handle::before, .noUi-handle::after{
+    display: none !important;
+}
+.noUi-value.noUi-value-horizontal.noUi-value-large{
+    font-size: 10px;
+    margin-top: .5rem;
+}
+.noUi-connect{
+    background-color: #1f77c5 !important;
+}
+/* end: noUiSlider General CSS */
+
+/* start: noUiSlider round slider(class based) CSS */
+.slider-round.w-100{
+    border: none;
+    height: 10px;
+}
+.slider-round.w-100 .noUi-handle{
+    top: -5px;
+}
+.slider-round.w-100 .noUi-handle {
+    height: 18px;
+    width: 18px;
+    right: -7.5px; /* half the width */
+    border-radius: 18px;
+}
+/* end: noUiSlider round slider(class based) CSS */
+

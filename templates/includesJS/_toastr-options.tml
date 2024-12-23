@@ -1,0 +1,40 @@
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        enableHtml: true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+    };
+
+    // Flash message handling
+    {% if error_message %}
+
+        toastr.error("{{ error_message }}");
+
+    {% endif %}
+
+    {% if success_message %}
+
+        toastr.success("{{ success_message }}");
+
+    {% endif %}
+
+    {% if warning_message %}
+
+        toastr.warning("{{ warning_message }}");
+
+    {% endif %}
+
+</script>

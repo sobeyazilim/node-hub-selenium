@@ -1,0 +1,118 @@
+<!--
+=========================================================
+* Node-hub Selenium - v3.0.1
+=========================================================
+* Product Page: https://www.sobeyazilim.com.tr/siberat
+* Copyright 2024 SOBE YAZILIM (https://www.sobeyazilim.com.tr/)
+* Coded by Murat BULBUL (murat.bulbul@sobeyazilim.com.tr)
+ =========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-preloader="enable" data-theme="dark">
+    <head>
+         <!-- Page title -->
+        <title>Node-hub Selenium</title>
+
+        <!-- Include libraries -->
+        {% include 'includes/_library_common.tml' %}
+
+        <!-- Include Common CSS -->
+        <link href="/static/common.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
+
+        <!-- Include Custom CSS -->
+        <link href="/static/index.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
+        
+    </head>
+    <body class="platform">
+        <!-- Preloader -->
+        {% include 'includes/_preloader.tml' %}
+
+        <!--  start: Header top [menu-header]-->
+        <div class="container-fluid fixed-top">
+            <div class="row py-0 top-bar-bg h-60px">
+                
+                <!--  Header top left -->
+                <div class="col-6 m-0 ps-1  d-flex justify-content-start align-items-center">
+                    <span>Node-hub Selenium</span>
+                </div>
+
+                <!--  Header top right -->
+                <div class="col-6 m-0 pe-0  d-flex justify-content-end align-items-center">
+                    {% include 'includes/_top-navbar-right.tml' %}
+                </div>
+            </div>
+        </div>
+        folder, bookmarks, credential, api
+        <div class="navbar-menu">
+            <div class="nav nav-tabs flex-column h-100 page-tabs-menu" role="tablist">
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'folder' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-folder" data-toggle="tab" href="#folder" role="tab" aria-controls="folder" aria-selected="true">
+                    <i class='bx bx-ghost fs-5'></i> Bookmarks
+                </a>
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'bookmarks' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-bookmarks" data-toggle="tab" href="#bookmarks" role="tab" aria-controls="bookmarks" aria-selected="true">
+                    <i class='bx bx-ghost fs-5'></i> Bookmarks
+                </a>
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'deployments' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-deployments" data-toggle="tab" href="#deployments" role="tab" aria-controls="deployments" aria-selected="true">
+                    <i class='bx bx-cylinder fs-5'></i> Vault
+                </a>
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'resources' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-resources" data-toggle="tab" href="#resources" role="tab" aria-controls="resources" aria-selected="true">
+                    <i class='bx bx-disc fs-5'></i> Resources
+                </a>
+            </div>
+            <!--  Sidebar small overlay -->
+            <div class="sidebar-overlay"></div>
+            <!--  Sidebar lock overlay when update form openned -->
+            {% if ( page_mode == 'create' or page_mode == 'edit' ) %}
+                <div class="sidebar-overlay-update"></div>
+            {% endif %}
+        </div>
+
+        <div class="page-content container-fluid h-100">
+            <div class="main-content">
+                <div class="tab-content">
+                    <div class="tab-pane fade {% if active_tab == 'decoys' or active_tab == None %}show active{% endif %}" id="decoys" role="tabpanel" aria-labelledby="tab-decoys">
+                        {% if page_mode == 'edit' %}
+                            edit id: {{cyberpot_public_id}}
+                        {% else %}
+                            {% include 'includes/_tab-cyberpot-decoys.tml' %}
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade {% if active_tab == 'deployments' %}show active{% endif %}" id="deployments" role="tabpanel" aria-labelledby="tab-deployments">
+                        {% if page_mode == 'edit' %}
+                            edit id: {{cyberpot_public_id}}
+                        {% else %}
+                            {% include 'includes/_tab-cyberpot-deployments.tml' %}
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade {% if active_tab == 'resources' %}show active{% endif %}" id="resources" role="tabpanel" aria-labelledby="tab-resources">
+                        {% if page_mode == 'edit' %}
+                            edit id: {{cyberpot_public_id}}
+                        {% else %}
+                            {% include 'includes/_tab-cyberpot-resources.tml' %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include Common JS -->
+        <script src="/static/common.js?build={{build_number}}"></script>
+
+        <!-- Include noUiSlider JS -->     
+        <script src="/static/noUiSlider/nouislider.js?build={{build_number}}"></script>           
+        
+        <!-- Include Grid JS -->
+        <script src="/static/grid.js?build={{build_number}}"></script>
+
+        <!-- Page Level JS -->
+        {% include 'includesJS/_toastr-options.tml' %}
+        {% include 'includesJS/_script-cyberpot-decoys.tml' %}
+        {% include 'includesJS/_script-cyberpot-resources.tml' %}
+
+        <!-- Page Level TML -->
+        {% include 'includes/_change-password.tml' %}
+        {% include 'includes/_footer.tml' %}
+
+    </body>
+</html>

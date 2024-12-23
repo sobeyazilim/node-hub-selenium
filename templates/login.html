@@ -1,0 +1,100 @@
+<!--
+=========================================================
+* Node-hub Selenium PLATFORM - v3.0.1
+=========================================================
+* Product Page: https://www.sobeyazilim.com.tr/siberat
+* Copyright 2024 SOBE YAZILIM (https://www.sobeyazilim.com.tr/)
+* Coded by Murat BULBUL (murat.bulbul@sobeyazilim.com.tr)
+ =========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-preloader="enable" data-theme="dark">
+  <head>
+
+    <!-- Page title -->
+    <title>Node-hub Selenium Login</title>
+
+    <!-- Include libraries -->
+    {% include 'includes/_library_common.tml' %}
+
+    <!-- Include Common CSS -->
+    <link href="/static/common.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
+
+    <!-- Include Custom CSS -->
+    <link href="/static/login.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
+
+  </head>
+  <body class="platform login-page">
+
+    <!-- Preloader -->
+    {% include 'includes/_preloader.tml' %}
+
+    <div class="login-brand row d-flex align-items-center justify-content-center mb-4">
+      <img src="/static/images/siberat-login-logo.svg?build={{build_number}}"/>
+    </div>
+
+
+    <div class="container">
+
+      <div class="row">
+        <div class="page">
+          <div class="container mt-4">
+            <div class="col-md-6 col-md-offset-3 d-flex justify-content-center">
+              <div class="login-block__container">
+                <form id="loginForm" class="form-preloder-enabled" action="/account/auth" method="post" >
+                    <div class="row m-0 mb-2">
+
+                        <div class="col-12 d-flex justify-content-start align-items-center p-0">
+                            <div class="input-group bg-light">
+                                <div class="input-group-prepend" style="min-width: 70px;">
+                                  <span class="input-group-text h-100 border-0 shadow-none rounded-0 w-100 justify-content-center">
+                                    <i class='bx bx-fingerprint fs-3' ></i>
+                                  </span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg fs-6 shadow-none rounded-0 border-0 bg-light" id="login_name" name="login_name" value="" placeholder="enter login name" required autofocus="yes">
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 d-flex justify-content-start align-items-center p-0 mt-2">
+                            <div class="input-group bg-light">
+                                <div class="input-group-prepend" style="min-width: 70px;">
+                                  <span class="input-group-text h-100 border-0 shadow-none rounded-0 w-100 justify-content-center">
+                                    <i class='bx bx-key fs-3' ></i>
+                                  </span>
+                                </div>
+                                <input type="password" class="form-control form-control-lg fs-6 shadow-none rounded-0 border-0 bg-light" id="login_password" name="login_password" value="" placeholder="enter password" required>
+                                <button type="button" class="btn btn-light d-flex align-items-center shadow-none rounded-0 border-0 input-append-btn toggle-closest-password-login" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Toggle Password" tabindex="-1">
+                                    <i class='bx bx-show fs-5' ></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex align-items-center p-0 mt-2">
+                          <button type="submit" class="btn btn-siberat btn-lg rounded-0 w-100 d-flex justify-content-center align-items-center">
+                              Log In
+                          </button>
+                        </div>
+
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Page Level JS -->
+    {% include 'includesJS/_toastr-options.tml' %}
+
+    <!-- Page Level TML -->
+    {% include 'includes/_footer.tml' %}
+
+    <!-- Include Common JS -->
+    <script src="/static/common.js?build={{build_number}}"></script>
+    
+  </body>
+</html>

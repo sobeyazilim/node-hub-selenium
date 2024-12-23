@@ -1,0 +1,13 @@
+    <!-- loader -->
+    <div id="preloader" class="d-flex align-items-center justify-content-center">
+        <div id="status">
+            <lord-icon 
+            class="text-center" 
+            src="/static/icons/loader-2-edited.json"
+            trigger="loop" 
+            colors="primary:#fff,secondary:#fff"
+            style="width:250px;height:250px">
+            </lord-icon>
+        </div>
+    </div>
+    <!-- loader end -->
