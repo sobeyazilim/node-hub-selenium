@@ -44,20 +44,19 @@
                 </div>
             </div>
         </div>
-        folder, bookmarks, credential, api
         <div class="navbar-menu">
             <div class="nav nav-tabs flex-column h-100 page-tabs-menu" role="tablist">
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'folder' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-folder" data-toggle="tab" href="#folder" role="tab" aria-controls="folder" aria-selected="true">
-                    <i class='bx bx-ghost fs-5'></i> Bookmarks
+                    <i class='bx bx-ghost fs-5'></i> Folder
                 </a>
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'bookmarks' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-bookmarks" data-toggle="tab" href="#bookmarks" role="tab" aria-controls="bookmarks" aria-selected="true">
                     <i class='bx bx-ghost fs-5'></i> Bookmarks
                 </a>
-                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'deployments' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-deployments" data-toggle="tab" href="#deployments" role="tab" aria-controls="deployments" aria-selected="true">
-                    <i class='bx bx-cylinder fs-5'></i> Vault
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'credentials' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-credentials" data-toggle="tab" href="#credentials" role="tab" aria-controls="credentials" aria-selected="true">
+                    <i class='bx bx-cylinder fs-5'></i> Credentials
                 </a>
-                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'resources' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-resources" data-toggle="tab" href="#resources" role="tab" aria-controls="resources" aria-selected="true">
-                    <i class='bx bx-disc fs-5'></i> Resources
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'api' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-api" data-toggle="tab" href="#api" role="tab" aria-controls="api" aria-selected="true">
+                    <i class='bx bx-disc fs-5'></i> API
                 </a>
             </div>
             <!--  Sidebar small overlay -->
