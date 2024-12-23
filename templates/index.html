@@ -70,44 +70,30 @@
         <div class="page-content container-fluid h-100">
             <div class="main-content">
                 <div class="tab-content">
-                    <div class="tab-pane fade {% if active_tab == 'decoys' or active_tab == None %}show active{% endif %}" id="decoys" role="tabpanel" aria-labelledby="tab-decoys">
-                        {% if page_mode == 'edit' %}
-                            edit id: {{cyberpot_public_id}}
-                        {% else %}
-                            {% include 'includes/_tab-cyberpot-decoys.tml' %}
-                        {% endif %}
+                    <div class="tab-pane fade {% if active_tab == 'folder' or active_tab == None %}show active{% endif %}" id="folder" role="tabpanel" aria-labelledby="tab-folder">
+                        
                     </div>
-                    <div class="tab-pane fade {% if active_tab == 'deployments' %}show active{% endif %}" id="deployments" role="tabpanel" aria-labelledby="tab-deployments">
-                        {% if page_mode == 'edit' %}
-                            edit id: {{cyberpot_public_id}}
-                        {% else %}
-                            {% include 'includes/_tab-cyberpot-deployments.tml' %}
-                        {% endif %}
+                    <div class="tab-pane fade {% if active_tab == 'bookmarks' %}show active{% endif %}" id="bookmarks" role="tabpanel" aria-labelledby="tab-bookmarks">
+                        
                     </div>
-                    <div class="tab-pane fade {% if active_tab == 'resources' %}show active{% endif %}" id="resources" role="tabpanel" aria-labelledby="tab-resources">
-                        {% if page_mode == 'edit' %}
-                            edit id: {{cyberpot_public_id}}
-                        {% else %}
-                            {% include 'includes/_tab-cyberpot-resources.tml' %}
-                        {% endif %}
+                    <div class="tab-pane fade {% if active_tab == 'credentials' %}show active{% endif %}" id="credentials" role="tabpanel" aria-labelledby="tab-credentials">
+                        
+                    </div>
+                    <div class="tab-pane fade {% if active_tab == 'api' %}show active{% endif %}" id="api" role="tabpanel" aria-labelledby="tab-api">
+                        
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Include Common JS -->
-        <script src="/static/common.js?build={{build_number}}"></script>
-
-        <!-- Include noUiSlider JS -->     
-        <script src="/static/noUiSlider/nouislider.js?build={{build_number}}"></script>           
+        <script src="/static/common.js?build={{build_number}}"></script>  
         
         <!-- Include Grid JS -->
         <script src="/static/grid.js?build={{build_number}}"></script>
 
         <!-- Page Level JS -->
         {% include 'includesJS/_toastr-options.tml' %}
-        {% include 'includesJS/_script-cyberpot-decoys.tml' %}
-        {% include 'includesJS/_script-cyberpot-resources.tml' %}
 
         <!-- Page Level TML -->
         {% include 'includes/_change-password.tml' %}
