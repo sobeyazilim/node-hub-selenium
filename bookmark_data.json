@@ -1,0 +1,173 @@
+[
+  {
+      "public_id": "50000000000001",
+      "name": "Example Name 1",
+      "bookmark_url": "https://example1.com",
+      "bookmark_url_visibility": true,
+      "autologin": true,
+      "browser": "chrome",
+      "assigned_group": "60000000000003"
+  },
+  {
+      "public_id": "50000000000002",
+      "name": "Example Name 2",
+      "bookmark_url": "https://example2.com",
+      "bookmark_url_visibility": true,
+      "autologin": false,
+      "browser": "opera",
+      "assigned_group": "60000000000004"
+  },
+  {
+      "public_id": "50000000000003",
+      "name": "Example Name 3",
+      "bookmark_url": "https://example3.com",
+      "bookmark_url_visibility": true,
+      "autologin": false,
+      "browser": "opera",
+      "assigned_group": "60000000000001"
+  },
+  {
+      "public_id": "50000000000004",
+      "name": "Example Name 4",
+      "bookmark_url": "https://example4.com",
+      "bookmark_url_visibility": false,
+      "autologin": false,
+      "browser": "chrome"
+  },
+  {
+      "public_id": "50000000000005",
+      "name": "Example Name 5",
+      "bookmark_url": "https://example5.com",
+      "bookmark_url_visibility": true,
+      "autologin": false,
+      "browser": "opera",
+      "assigned_group": "60000000000004"
+  },
+  {
+      "public_id": "50000000000006",
+      "name": "Example Name 6",
+      "bookmark_url": "https://example6.com",
+      "bookmark_url_visibility": true,
+      "autologin": true,
+      "browser": "firefox",
+      "assigned_group": "60000000000004"
+  },
+  {
+      "public_id": "50000000000007",
+      "name": "Example Name 7",
+      "bookmark_url": "https://example7.com",
+      "bookmark_url_visibility": true,
+      "autologin": false,
+      "browser": "opera"
+  },
+  {
+      "public_id": "50000000000008",
+      "name": "Example Name 8",
+      "bookmark_url": "https://example8.com",
+      "bookmark_url_visibility": true,
+      "autologin": false,
+      "browser": "firefox",
+      "assigned_group": "60000000000001"
+  },
+  {
+      "public_id": "50000000000009",
+      "name": "Example Name 9",
+      "bookmark_url": "https://example9.com",
+      "bookmark_url_visibility": true,
+      "autologin": true,
+      "browser": "chrome",
+      "assigned_group": "60000000000003"
+  },
+  {
+      "public_id": "50000000000010",
+      "name": "Example Name 10",
+      "bookmark_url": "https://example10.com",
+      "bookmark_url_visibility": false,
+      "autologin": false,
+      "browser": "edge"
+  },
+  {
+      "public_id": "50000000000011",
+      "name": "Example Name 11",
+      "bookmark_url": "https://example11.com",
+      "bookmark_url_visibility": false,
+      "autologin": true,
+      "browser": "edge",
+      "assigned_group": "60000000000004"
+  },
+  {
+      "public_id": "50000000000012",
+      "name": "Example Name 12",
+      "bookmark_url": "https://example12.com",
+      "bookmark_url_visibility": false,
+      "autologin": true,
+      "browser": "opera"
+  },
+  {
+      "public_id": "50000000000013",
+      "name": "Example Name 13",
+      "bookmark_url": "https://example13.com",
+      "bookmark_url_visibility": false,
+      "autologin": false,
+      "browser": "chrome",
+      "assigned_group": "60000000000002"
+  },
+  {
+      "public_id": "50000000000014",
+      "name": "Example Name 14",
+      "bookmark_url": "https://example14.com",
+      "bookmark_url_visibility": false,
+      "autologin": false,
+      "browser": "firefox"
+  },
+  {
+      "public_id": "50000000000015",
+      "name": "Example Name 15",
+      "bookmark_url": "https://example15.com",
+      "bookmark_url_visibility": true,
+      "autologin": true,
+      "browser": "chrome",
+      "assigned_group": "60000000000001"
+  },
+  {
+      "public_id": "50000000000016",
+      "name": "Example Name 16",
+      "bookmark_url": "https://example16.com",
+      "bookmark_url_visibility": true,
+      "autologin": false,
+      "browser": "edge"
+  },
+  {
+      "public_id": "50000000000017",
+      "name": "Example Name 17",
+      "bookmark_url": "https://example17.com",
+      "bookmark_url_visibility": true,
+      "autologin": true,
+      "browser": "chrome",
+      "assigned_group": "60000000000003"
+  },
+  {
+      "public_id": "50000000000018",
+      "name": "Example Name 18",
+      "bookmark_url": "https://example18.com",
+      "bookmark_url_visibility": false,
+      "autologin": false,
+      "browser": "edge"
+  },
+  {
+      "public_id": "50000000000019",
+      "name": "Example Name 19",
+      "bookmark_url": "https://example19.com",
+      "bookmark_url_visibility": true,
+      "autologin": true,
+      "browser": "opera"
+  },
+  {
+      "public_id": "50000000000020",
+      "name": "Example Name 20",
+      "bookmark_url": "https://example20.com",
+      "bookmark_url_visibility": false,
+      "autologin": true,
+      "browser": "firefox"
+  }
+]

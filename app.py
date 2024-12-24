@@ -12,6 +12,8 @@ from starlette.middleware.sessions import SessionMiddleware
 from apscheduler.schedulers.background import BackgroundScheduler
 import uvicorn
 import os
+import json
+
 
 # providers
 from core.providers.dbprovider import initialize_db
@@ -216,6 +218,12 @@ async def user(request: Request):
             # get public id
             public_id = class_base().return_auth_token_public_id(token)
 
+            with open('bookmark_data.json', 'r', encoding='utf-8') as data:
+                bookmark_data = json.load(data)
+
+            with open('group_data.json', 'r', encoding='utf-8') as data:
+                group_data = json.load(data)
+
             # toastr
             success_message = request.session.pop("success_message", None)
             error_message = request.session.pop("error_message", None)
@@ -228,6 +236,8 @@ async def user(request: Request):
                     "build_number": class_configuration().return_app_build_number(), 
                     "current_user": class_administration().return_login_name_by_public_id(public_id),
                     "current_user_role": class_administration().return_user_role_by_public_id(public_id),
+                    "bookmark_data": bookmark_data, 
+                    "group_data": group_data, 
                     "success_message": success_message, 
                     "error_message": error_message, 
                     "warning_message": warning_message

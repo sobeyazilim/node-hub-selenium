@@ -56,18 +56,22 @@
             </div>
         </div>
 
-        <div class="container-fluid p-3 d-flex align-items-start" style="margin-top: 70px;">
-            <ul class="nav nav-pills flex-column nav-pills border-end border-3 me-3 align-items-end" id="pills-tab" role="tablist" style="width:270px;">
+        <div class="container-fluid p-3 d-flex align-items-start" style="margin-top: 55px;">
+
+            <ul class="nav nav-pills flex-column nav-pills border-end border-3 me-3 align-items-end" id="pills-tab" role="tablist" style="width:300px;">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link text-light fw-semibold active position-relative fs-5" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                    <button class="nav-link text-light fw-semibold active position-relative fs-5" id="pills-unassigned-tab" data-bs-toggle="pill" data-bs-target="#pills-unassigned" type="button" role="tab" aria-controls="pills-unassigned" aria-selected="true">Unassigned Bookmarks</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link text-light fw-semibold position-relative fs-5" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-                </li>
+                {% for group in group_data %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-light fw-semibold position-relative fs-5" id="pills-{{group.public_id}}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{group.public_id}}" type="button" role="tab" aria-controls="pills-{{group.public_id}}" aria-selected="false"> {{group.name}} </button>
+                    </li>
+                {% endfor %}
             </ul>
+
             <div class="tab-content border rounded-3 border-secondary p-3 text-danger w-100" id="pills-tabContent">
 
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade show active" id="pills-unassigned" role="tabpanel" aria-labelledby="pills-unassigned-tab">
                     <!-- Content Start -->
                     <div class="container-fluid container-grid">
                         <!-- Grid View-->
@@ -90,23 +94,26 @@
                             <div class="col-4 col-lg-8 pe-0 d-none d-md-inline-flex align-items-center justify-content-end gap-2">
                             </div>
                         </div>
-
-                        <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-1 g-4 d-flex align-items-stretch mt-1">
-                            {# {% for automation in automation_action %} #}
-                                <div class="content-item-grid d-flex" data-type="" data-search="">
+                        
+                        <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-1 g-4 d-flex align-items-stretch mt-1 bookmark-overflow">
+                            {% for bookmark in bookmark_data %}
+                                {% if not bookmark.assigned_group %}
+                                <div class="content-item-grid d-flex" data-type="" data-search="{{bookmark.name}} {{bookmark.browser}}">
                                     <div class="col d-flex">
                                         <div class="card card-grid flex-grow-1 text-light rounded-0">
                                             <!-- A container for displaying information in the header section -->
                                             <div class="card-header py-4 d-flex align-items-center justify-content-between grid-bordered border-start">
-                                                <span class="fs-5 fw-bold text-gray-900"> TEST_NAME </span>
+                                                <span class="fs-5 fw-bold text-gray-900"> {{bookmark.name}} </span>
                                                 <span class="badge fs-7">
                                                     <!--  Bookmark Connection true-false -->
-                                                    <i class='bx bx-bot fs-3 pe-2'></i>
-                                                    <i class='bx bxl-chrome fs-3'></i>
+                                                    <i class='bx bx-{% if bookmark.autologin %}bot{% endif %} fs-2 pe-2'></i>
+                                                    <i class='bx bxl-{{bookmark.browser}} fs-2'></i>
                                                 </span> 
                                             </div>
                                             <div class="card-body">
-                                                <p class="text-secondary mt-2"><span class="fw-bold text-light">URL:</span> https://asgerlab.com/login </p>
+                                                <p class="text-secondary mt-2"><span class="fw-bold text-light">URL:</span>
+                                                    {% if bookmark.bookmark_url_visibility %} {{bookmark.bookmark_url}} {% else %} ****************** {% endif %} 
+                                                </p>
                                             </div>
                                             <!-- CRUD Buttons -->
                                             <div class="card-footer w-100">
@@ -124,82 +131,85 @@
                                         </div>
                                     </div>
                                 </div>
-                            {# {% endfor %} #}
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>  
                     <!-- Content End -->
                 </div>
 
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <!-- Content Start -->
-                    <div class="container-fluid container-grid">
-                        <!-- Grid View-->
-                        <div class="row border-bottom border-secondary pb-2">
-                            <div class="col-8 col-lg-4 d-flex justify-content-start align-items-center px-0 mb-1 position-relative">
-                                <input type="text" 
-                                    class="search-input form-control border-1 border-secondary rounded-2 h-50px w-100 bg-dark text-light pe-5" 
-                                    placeholder="Search" 
-                                    style="min-width: 140px; max-width: 100% !important;">
-                                <button type="button" 
-                                        class="btn-search-clear btn btn-outline-light shadow-none input-append-btn border-0 d-flex justify-content-center align-items-center position-absolute top-50 end-0 translate-middle-y me-1" 
-                                        data-bs-toggle="tooltip" 
-                                        data-bs-placement="right" 
-                                        data-bs-trigger="hover" 
-                                        title="Clear" 
-                                        tabindex="-1">
-                                    <i class='bx bx-x fs-3 text-dark'></i>
-                                </button>
+                {% for group in group_data %}
+                    <div class="tab-pane fade" id="pills-{{group.public_id}}" role="tabpanel" aria-labelledby="pills-{{group.public_id}}-tab">
+                        <!-- Content Start -->
+                        <div class="container-fluid container-grid">
+                            <!-- Grid View-->
+                            <div class="row border-bottom border-secondary pb-2">
+                                <div class="col-8 col-lg-4 d-flex justify-content-start align-items-center px-0 mb-1 position-relative">
+                                    <input type="text" 
+                                        class="search-input form-control border-1 border-secondary rounded-2 h-50px w-100 bg-dark text-light pe-5" 
+                                        placeholder="Search" 
+                                        style="min-width: 140px; max-width: 100% !important;">
+                                    <button type="button" 
+                                            class="btn-search-clear btn btn-outline-light shadow-none input-append-btn border-0 d-flex justify-content-center align-items-center position-absolute top-50 end-0 translate-middle-y me-1" 
+                                            data-bs-toggle="tooltip" 
+                                            data-bs-placement="right" 
+                                            data-bs-trigger="hover" 
+                                            title="Clear" 
+                                            tabindex="-1">
+                                        <i class='bx bx-x fs-3 text-dark'></i>
+                                    </button>
+                                </div>
+                                <div class="col-4 col-lg-8 pe-0 d-none d-md-inline-flex align-items-center justify-content-end gap-2">
+                                </div>
                             </div>
-                            <div class="col-4 col-lg-8 pe-0 d-none d-md-inline-flex align-items-center justify-content-end gap-2">
-                            </div>
-                        </div>
-
-                        <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-1 g-4 d-flex align-items-stretch mt-1">
-                            {# {% for automation in automation_action %} #}
-                                <div class="content-item-grid d-flex" data-type="" data-search="">
-                                    <div class="col d-flex">
-                                        <div class="card card-grid flex-grow-1 text-light rounded-0">
-                                            <!-- A container for displaying information in the header section -->
-                                            <div class="card-header py-4 d-flex align-items-center justify-content-between grid-bordered border-start">
-                                                <span class="fs-5 fw-bold text-gray-900"> TEST_NAME </span>
-                                                <span class="badge fs-7">
-                                                    <!--  Bookmark Connection true-false -->
-                                                    <i class='bx bx-bot fs-3 pe-2'></i>
-                                                    <i class='bx bxl-chrome fs-3'></i>
-                                                </span> 
-                                            </div>
-                                            <div class="card-body">
-                                                <p class="text-secondary mt-2"><span class="fw-bold text-light">Url:</span> https://asgerlab.com/login </p>
-                                            </div>
-                                            <!-- CRUD Buttons -->
-                                            <div class="card-footer w-100">
-                                                <div class="button-wrapper row m-0 h-100">
-                                                    <div class="col p-0">
-                                                        <!-- edit btn -->
-                                                        <form method="post" action="/automation/action/edit/">
-                                                            <button type="submit" class="btn btn-secondary shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Edit">
-                                                                <i class='bx bx-link-external fs-5'></i>
-                                                            </button>
-                                                        </form>
+                            
+                            <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-1 g-4 d-flex align-items-stretch mt-1 bookmark-overflow">
+                                {% for bookmark in bookmark_data %}
+                                    {% if bookmark.assigned_group == group.public_id%}
+                                        <div class="content-item-grid d-flex" data-type="" data-search="{{bookmark.name}} {{bookmark.browser}}">
+                                            <div class="col d-flex">
+                                                <div class="card card-grid flex-grow-1 text-light rounded-0">
+                                                    <!-- A container for displaying information in the header section -->
+                                                    <div class="card-header py-4 d-flex align-items-center justify-content-between grid-bordered border-start">
+                                                        <span class="fs-5 fw-bold text-gray-900"> {{bookmark.name}} </span>
+                                                        <span class="badge fs-7">
+                                                            <!--  Bookmark Connection true-false -->
+                                                            <i class='bx bx-{% if bookmark.autologin %}bot{% endif %} fs-2 pe-2'></i>
+                                                            <i class='bx bxl-{{bookmark.browser}} fs-2'></i>
+                                                        </span> 
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p class="text-secondary mt-2"><span class="fw-bold text-light">Url:</span>
+                                                            {% if bookmark.bookmark_url_visibility %} {{bookmark.bookmark_url}} {% else %} ****************** {% endif %} 
+                                                        </p>
+                                                    </div>
+                                                    <!-- CRUD Buttons -->
+                                                    <div class="card-footer w-100">
+                                                        <div class="button-wrapper row m-0 h-100">
+                                                            <div class="col p-0">
+                                                                <!-- edit btn -->
+                                                                <form method="post" action="/automation/action/edit/">
+                                                                    <button type="submit" class="btn btn-secondary shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Edit">
+                                                                        <i class='bx bx-link-external fs-5'></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            {# {% endfor %} #}
-                        </div>
-                    </div>  
-                    <!-- Content End -->
-                </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>  
+                        <!-- Content End -->
+                    </div>
+                {% endfor %}
             </div>
 
         </div>
                 
-
-       
-
-
         <!-- Include Common JS -->
         <script src="/static/common.js?build={{build_number}}"></script>  
         
