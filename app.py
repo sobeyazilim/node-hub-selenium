@@ -211,7 +211,6 @@ async def user(request: Request):
                     "build_number": class_configuration().return_app_build_number(), 
                     "current_user": class_administration().return_login_name_by_public_id(public_id),
                     "current_user_role": class_administration().return_user_role_by_public_id(public_id),
-                    'system_info' : class_system().return_system_resource_usage(),
                     "success_message": success_message, 
                     "error_message": error_message, 
                     "warning_message": warning_message
