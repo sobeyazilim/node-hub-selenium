@@ -1,9 +1,8 @@
-import re
 import os
 
 # app
 app_version = '3.1.0'
-app_title = "CYBERSENS Platform"
+app_title = "Node-hub Selenium"
 app_summary = "AI data intelligence solution"
 app_company = "SOBE YAZILIM"
 app_contact_name = "Murat BÜLBÜL"
@@ -91,19 +90,7 @@ app_stream_mode = True
 # app log path
 app_log_path = "/sobe/log/node-sensor-web-platform.log"
 
-# app scouting container
-app_scouting_container_url = "https://192.0.2.22:9999/scouting/"
-
-# websocket auth key
-websocket_server_key = "fef38a9373bdb3c96694f030f53a4395f8bcd0b0c72005bdd15eb8e086345366"
-# insert threshold for websocket incidents handler
-websocket_database_insert_batch_size = 10
-
 # postgresql/database
-# Default table name for retention
-database_retention_table_name = 'sensor_incidents'
-# Incidents should be stored in a database
-database_store_incidents = True
 # In-memory storage for dynamic retention period
 database_retention_period_days = 7  # Default value
 # Default max size in megabytes (1 GB)
@@ -117,14 +104,6 @@ database_max_overflow = 20
 
 # db debug mode
 database_debug_mode = False
-
-# map switched type
-map_default_tile_name = 'Transport Map'
-map_switched_type = 'online' # online
-map_websocket_channel_uri = '/socket/attackmap/threat'
-
-# map application list
-map_applications = [ "ADB", "ATG", "BSAP", "CODESYS", "CRIMSON", "DCOM", "DHCP", "DNS", "EMAIL", "FINS", "FOCAS", "FTP", "GE-SRTP", "GVCP", "GVSP", "HICP", "HTTP", "HTTPS", "ICCP", "IEC-60870-5-104", "IPSEC", "KERBEROS", "KNXNET IP", "LDAP", "L2TP", "MEDICAL", "MINECRAFT", "MONGODB", "MODBUS", "MTCONNECT", "MYSQL", "NTP", "OPENVPN", "ORACLE", "PC-WORX", "PLAYSTATION NETWORK", "POSTGRESQL", "PPTP", "RDP", "SIP", "SMB", "SNMP", "SQL", "SQL SERVER", "SSH", "STEAM", "TEAMSPEAK", "TELNET", "TFTP", "VNC", "XBOX LIVE", "not-applicable" ]
 
 # environments
 environment = os.getenv("ENVIRONMENT", "production")

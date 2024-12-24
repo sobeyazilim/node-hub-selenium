@@ -14,7 +14,7 @@ from core.providers.dbprovider import dbprovider, dbBase
 # class
 from core.classes.class_configuration import class_configuration
 
-# services
+# servicesx
 from core.services.serviceCrypt import service_cryptography
 from core.services.serviceLogger import service_logger, service_logger_debug
 
