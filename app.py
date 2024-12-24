@@ -165,6 +165,13 @@ async def index(request: Request):
         if token:
             # get public id
             public_id = class_base().return_auth_token_public_id(token)
+            
+            # define default landing page
+            if "active_tab" not in request.session:
+                request.session["active_tab"] = "folder"
+                active_tab  = "folder"
+            else:
+                active_tab = request.session.pop("active_tab")
 
             # toastr
             success_message = request.session.pop("success_message", None)
@@ -180,7 +187,8 @@ async def index(request: Request):
                     "current_user_role": class_administration().return_user_role_by_public_id(public_id),
                     "success_message": success_message, 
                     "error_message": error_message, 
-                    "warning_message": warning_message
+                    "warning_message": warning_message,
+                    "active_tab": active_tab
                 }
             )
         request.session["warning_message"] = "You must log in to access"

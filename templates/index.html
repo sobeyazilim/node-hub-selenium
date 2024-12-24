@@ -36,7 +36,7 @@
                 
                 <!--  Header top left -->
                 <div class="col-6 m-0 ps-1  d-flex justify-content-start align-items-center">
-                    <span>Node-hub Selenium</span>
+                    <span class="text-light m-2">Node-hub Selenium</span>
                 </div>
 
                 <!--  Header top right -->
@@ -48,16 +48,16 @@
         <div class="navbar-menu">
             <div class="nav nav-tabs flex-column h-100 page-tabs-menu" role="tablist">
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'folder' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-folder" data-toggle="tab" href="#folder" role="tab" aria-controls="folder" aria-selected="true">
-                    <i class='bx bx-ghost fs-5'></i> Folder
+                    <i class='bx bxs-folder-open fs-5'></i> Folder
                 </a>
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'bookmarks' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-bookmarks" data-toggle="tab" href="#bookmarks" role="tab" aria-controls="bookmarks" aria-selected="true">
-                    <i class='bx bx-ghost fs-5'></i> Bookmarks
+                    <i class='bx bxs-bookmarks fs-5'></i> Bookmarks
                 </a>
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'credentials' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-credentials" data-toggle="tab" href="#credentials" role="tab" aria-controls="credentials" aria-selected="true">
-                    <i class='bx bx-cylinder fs-5'></i> Credentials
+                    <i class='bx bxs-id-card fs-5'></i> Credentials
                 </a>
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'api' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-api" data-toggle="tab" href="#api" role="tab" aria-controls="api" aria-selected="true">
-                    <i class='bx bx-disc fs-5'></i> API
+                    <i class='bx bx-key fs-5'></i> API
                 </a>
             </div>
             <!--  Sidebar small overlay -->
@@ -78,7 +78,7 @@
                         
                     </div>
                     <div class="tab-pane fade {% if active_tab == 'credentials' %}show active{% endif %}" id="credentials" role="tabpanel" aria-labelledby="tab-credentials">
-                        
+                        {% include 'includes/_tab_credentials_update.tml' %}
                     </div>
                     <div class="tab-pane fade {% if active_tab == 'api' %}show active{% endif %}" id="api" role="tabpanel" aria-labelledby="tab-api">
                         

@@ -43,7 +43,7 @@ async def auth(request: Request, login_name: str = Form(...), login_password: st
         if login_name and login_password:
             if class_administration().authenticate_user(login_name, login_password, request.client.host):
                 public_id = class_administration().return_public_id_by_login_name(login_name)
-                token = class_base().generate_auth_token(public_id)
+                token = class_base().generate_auth_token(public_id)                
                 request.session["success_message"] = "Successfully logged in"
                 response = RedirectResponse(url="/index", status_code=302)
                 response.set_cookie(key=class_configuration().return_app_jwt_token_label(), value=token)
