@@ -1,1 +1,6 @@
+__pycache__/
 **/__pycache__/
+core/providers/__pycache__
+core/classes/__pycache__
+core/services/__pycache__
+core/models/__pycache__
