@@ -1,6 +1,6 @@
 <!--
 =========================================================
-* Hub Automation - v1.0.0
+* Node-hub Selenium - v3.0.1
 =========================================================
 * Product Page: https://www.sobeyazilim.com.tr/siberat
 * Copyright 2024 SOBE YAZILIM (https://www.sobeyazilim.com.tr/)
@@ -13,7 +13,7 @@
 <html lang="en" data-preloader="enable" data-theme="dark">
     <head>
          <!-- Page title -->
-        <title>Hub Automation</title>
+        <title>Node-hub Selenium</title>
 
         <!-- Include libraries -->
         {% include 'includes/_library_common.tml' %}
@@ -84,10 +84,22 @@
                         
                     </div>
                     <div class="tab-pane fade {% if active_tab == 'bookmarks' %}show active{% endif %}" id="bookmarks" role="tabpanel" aria-labelledby="tab-bookmarks">
-                        
+                        {% if active_tab == "bookmarks" and page_mode == 'create' %}
+                            {% include 'includes/_tab-bookmarks-update.tml' %}
+                        {% elif active_tab == "bookmarks" and page_mode == 'edit' %}
+                            {% include 'includes/_tab-bookmarks-update.tml' %}
+                        {% else %}
+                            {% include 'includes/_tab-bookmarks.tml' %}
+                        {% endif %}
                     </div>
                     <div class="tab-pane fade {% if active_tab == 'credentials' %}show active{% endif %}" id="credentials" role="tabpanel" aria-labelledby="tab-credentials">
-                        {% include 'includes/_tab_credentials_update.tml' %}
+                        {% if active_tab == "credentials" and page_mode == 'create' %}
+                            {% include 'includes/_tab_credentials_update.tml' %}
+                        {% elif active_tab == "credentials" and page_mode == 'edit' %}
+                            {% include 'includes/_tab_credentials_update.tml' %}
+                        {% else %}
+                            {% include 'includes/_tab_credentials.tml' %}
+                        {% endif %}
                     </div>
                     <div class="tab-pane fade {% if active_tab == 'permissions' %}show active{% endif %}" id="permissions" role="tabpanel" aria-labelledby="tab-permissions">
                         {% include 'includes/_tab_permissions.tml' %}
