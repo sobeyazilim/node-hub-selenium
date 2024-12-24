@@ -38,16 +38,22 @@
             <div class="row py-0 top-bar-bg h-60px">
                 
                 <!--  Header top left -->
-                <div class="col-6 m-0 ps-1  d-flex justify-content-start align-items-center">
-                    <span class="text-light m-2">Node-hub Selenium</span>
+                <div class="col-9 m-0 ps-3  d-flex justify-content-start align-items-center">
+                    <i class='bx bx-bot fs-2 pe-1 text-light'></i>
+                    <span class="fs-4 text-light">
+                        <strong>
+                            Hub Automation
+                        </strong>
+                    </span>
                 </div>
 
                 <!--  Header top right -->
-                <div class="col-6 m-0 pe-0  d-flex justify-content-end align-items-center">
+                <div class="col-3 m-0 pe-0  d-flex justify-content-end align-items-center">
                     {% include 'includes/_top-navbar-right.tml' %}
                 </div>
             </div>
         </div>
+
         <div class="navbar-menu">
             <div class="nav nav-tabs flex-column h-100 page-tabs-menu" role="tablist">
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'bookmarks' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-bookmarks" data-toggle="tab" href="#bookmarks" role="tab" aria-controls="bookmarks" aria-selected="true">

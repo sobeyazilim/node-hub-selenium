@@ -315,7 +315,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "app:app",  # Replace with your module name and app instance
         host="0.0.0.0",
-        port=6767,
+        port=9876,
         reload=class_configuration().return_app_debug_mode(), # Enables auto-reloading
         workers=num_workers,  # Use the number of CPU cores for workers
         ssl_keyfile="core/certs/key.pem",
