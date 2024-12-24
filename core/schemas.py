@@ -2,7 +2,7 @@ import os
 
 # app
 app_version = '3.1.0'
-app_title = "Node-hub Selenium"
+app_title = "Hub Automation"
 app_summary = "AI data intelligence solution"
 app_company = "SOBE YAZILIM"
 app_contact_name = "Murat BÜLBÜL"

@@ -1,0 +1,67 @@
+<div class="container-fluid container-grid p-4 pt-0">
+
+    <!-- top menu -->
+    <div class="grid-filter row border-bottom border-secondary pb-2">
+        <!-- grid-filter-search -->
+        <div class="grid-filter-search col-8 col-lg-4 d-flex justify-content-start align-items-center px-0">
+
+            <!-- start: [Authorization Check] -->
+            {% if current_user_role != 'readonly' %}
+            <a href="/bookmarks/create" class="btn btn-outline-light d-flex justify-content-start border-1 border-secondary align-items-center h-50px me-2" style="min-width: 150px !important;">
+                <i class="bx bx-plus fs-4 pe-1"></i>Create New
+            </a>
+            {% endif %}
+            <!-- end: [Authorization Check] -->
+
+            <input type="text" class="search-input form-control border-1 border-secondary rounded-2 h-50px w-100 bg-dark text-light" placeholder="Search" style="min-width: 140px;max-width: 100% !important;padding-right:60px;">
+            <button type="button" class="btn-search-clear btn btn-outline-light shadow-none input-append-btn border-0 d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Clear" tabindex="-1">
+                <i class='bx bx-x fs-3'></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div id="tableView2" class="tab-pane view-table fade table-responsive mt-1 show active" role="tabpanel">
+            <table class="table text-light table-hover align-middle bg-transparent" style="border-collapse: separate; border-spacing: 0 20px;">
+                <thead>
+                    <tr>
+                        <th class="col-3 border-0 ps-4" scope="col">ID</th>
+                        <th class="col-3 border-0" scope="col">Title</th>
+                        <th class="col-3 border-0" scope="col">URL</th>
+                        <th class="col-3 border-0" scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bookmark in bookmarks %}
+                    <tr class="content-item-table fs-7" data-search="{{ bookmark.id }} {{ bookmark.title }} {{ bookmark.url }}">
+                        <td class="grid-bordered border-start">{{ bookmark.id }}</td>
+                        <td>{{ bookmark.title }}</td>
+                        <td>{{ bookmark.url }}</td>
+                        <td>
+                            <div class="button-wrapper gap-2 d-flex align-items-center justify-content-center">
+                                <!-- view information btn -->
+                                <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#bookmarkOffcanvas_{{ bookmark.id }}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="View">
+                                    <i class='bx bx-dock-top fs-5'></i>                                      
+                                </button>
+
+                                <form method="post" action="/bookmarks/edit/{{ bookmark.id }}">
+                                    <button type="submit" class="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Edit">
+                                        <i class='bx bx-edit fs-5'></i>
+                                    </button>
+                                </form>
+
+                                <!-- delete btn -->
+                                <form class="d-inline-block need-to-confirm" method="post" action="/bookmarks/delete/{{ bookmark.id }}">
+                                    <button type="submit" class="btn btn-outline-light btn-sm shadow-none d-inline-flex need-to-confirm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Delete">
+                                        <i class='bx bx-trash-alt fs-5'></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

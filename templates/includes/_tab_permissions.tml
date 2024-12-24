@@ -3,7 +3,7 @@
         <div class="col-8 col-lg-4 d-flex justify-content-start align-items-center px-0">
             <!-- start: [Authorization Check] -->
             {% if current_user_role != 'readonly' %}
-                <form method="get" action="/permissions/create/">
+                <form method="get" action="/permissions/create">
                     <button type="submit" class="btn btn-outline-light d-flex justify-content-start border-1 border-secondary align-items-center h-50px me-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" style="min-width: 150px !important;" title="Create">
                         <i class='bx bx-plus fs-4 pe-1'></i> Create New
                     </button>
