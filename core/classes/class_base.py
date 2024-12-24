@@ -9,9 +9,6 @@ import re
 # models that imported for table trigger after create events
 # models that imported for table trigger after create events
 from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementUser import ModelAdministrationUserManagementUser
-from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementDirectoryConnector import ModelAdministrationUserManagementDirectoryConnector
-from core.models.SQLAlchemy.administration.ModelAdministrationAuthentication import ModelAdministrationAuthenticationProfile, ModelAdministrationAuthenticationSecQuestion
-from core.models.SQLAlchemy.administration.ModelAdministrationUserManagementTeam import ModelAdministrationUserManagementTeam
 from core.models.SQLAlchemy.ModelHistory import ModelHistoryLogin
 
 # class

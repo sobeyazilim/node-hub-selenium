@@ -20,7 +20,6 @@ from core.providers.scheduler import scheduled_task
 # class
 from core.classes.class_configuration import class_configuration
 from core.classes.class_administration import class_administration
-from core.classes.class_system import class_system
 from core.classes.class_base import class_base
 
 # services
@@ -179,7 +178,6 @@ async def index(request: Request):
                     "build_number": class_configuration().return_app_build_number(), 
                     "current_user": class_administration().return_login_name_by_public_id(public_id),
                     "current_user_role": class_administration().return_user_role_by_public_id(public_id),
-                    'system_info' : class_system().return_system_resource_usage(),
                     "success_message": success_message, 
                     "error_message": error_message, 
                     "warning_message": warning_message
@@ -238,7 +236,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "app:app",  # Replace with your module name and app instance
         host="0.0.0.0",
-        port=7777,
+        port=9999,
         reload=class_configuration().return_app_debug_mode(), # Enables auto-reloading
         workers=num_workers,  # Use the number of CPU cores for workers
         ssl_keyfile="core/certs/key.pem",
