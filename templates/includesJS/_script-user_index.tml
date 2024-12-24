@@ -1,0 +1,21 @@
+<script>
+    function openCity(evt, cityName) {
+        // Get all tabcontent elements and hide them
+        var tabcontent = document.getElementsByClassName("tabcontent");
+        for (var i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Get all tablinks elements and remove the "active" class
+        var tablinks = document.getElementsByClassName("tablinks");
+        for (var i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+
+        // Show the current tab and add the "active" class
+        document.getElementById(cityName).style.display = "block";
+        document.getElementById(cityName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
