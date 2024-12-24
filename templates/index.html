@@ -18,6 +18,9 @@
         <!-- Include libraries -->
         {% include 'includes/_library_common.tml' %}
 
+        <!-- Include Grid CSS -->
+        <link href="/static/grid.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous" />
+
         <!-- Include Common CSS -->
         <link href="/static/configuration.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
         <link href="/static/common.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
@@ -53,17 +56,17 @@
 
         <div class="navbar-menu">
             <div class="nav nav-tabs flex-column h-100 page-tabs-menu" role="tablist">
-                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'folder' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-folder" data-toggle="tab" href="#folder" role="tab" aria-controls="folder" aria-selected="true">
-                    <i class='bx bxs-folder-open fs-5'></i> Folder
-                </a>
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'bookmarks' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-bookmarks" data-toggle="tab" href="#bookmarks" role="tab" aria-controls="bookmarks" aria-selected="true">
                     <i class='bx bxs-bookmarks fs-5'></i> Bookmarks
+                </a>
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'groups' or active_tab == None %}active{% endif %}  {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-groups" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="true">
+                    <i class='bx bxs-folder-open fs-5'></i> Groups
                 </a>
                 <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'credentials' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-credentials" data-toggle="tab" href="#credentials" role="tab" aria-controls="credentials" aria-selected="true">
                     <i class='bx bxs-id-card fs-5'></i> Credentials
                 </a>
-                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'api' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-api" data-toggle="tab" href="#api" role="tab" aria-controls="api" aria-selected="true">
-                    <i class='bx bx-key fs-5'></i> API
+                <a class="nav-link text-light py-3 fs-6 {% if active_tab == 'permissions' %}active{% endif %} {% if page_mode == 'edit' %}pe-none user-select-none not-allowed{% endif %}" id="tab-permissions" data-toggle="tab" href="#permissions" role="tab" aria-controls="permissions" aria-selected="true">
+                    <i class='bx bxs-key fs-5'></i> Permissions
                 </a>
             </div>
             <!--  Sidebar small overlay -->
@@ -77,7 +80,7 @@
         <div class="page-content container-fluid h-100">
             <div class="main-content">
                 <div class="tab-content">
-                    <div class="tab-pane fade {% if active_tab == 'folder' or active_tab == None %}show active{% endif %}" id="folder" role="tabpanel" aria-labelledby="tab-folder">
+                    <div class="tab-pane fade {% if active_tab == 'groups' or active_tab == None %}show active{% endif %}" id="groups" role="tabpanel" aria-labelledby="tab-groups">
                         
                     </div>
                     <div class="tab-pane fade {% if active_tab == 'bookmarks' %}show active{% endif %}" id="bookmarks" role="tabpanel" aria-labelledby="tab-bookmarks">
@@ -86,8 +89,8 @@
                     <div class="tab-pane fade {% if active_tab == 'credentials' %}show active{% endif %}" id="credentials" role="tabpanel" aria-labelledby="tab-credentials">
                         {% include 'includes/_tab_credentials_update.tml' %}
                     </div>
-                    <div class="tab-pane fade {% if active_tab == 'api' %}show active{% endif %}" id="api" role="tabpanel" aria-labelledby="tab-api">
-                        
+                    <div class="tab-pane fade {% if active_tab == 'permissions' %}show active{% endif %}" id="permissions" role="tabpanel" aria-labelledby="tab-permissions">
+                        {% include 'includes/_tab_permissions.tml' %}
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 # @@@Email  : murat.bulbul@sobeyazilim.com.tr
 
 # primary libraries
-from fastapi import FastAPI, Request, Depends
+from fastapi import FastAPI, Path, Request, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -166,18 +166,26 @@ async def index(request: Request):
             # get public id
             public_id = class_base().return_auth_token_public_id(token)
             
+            # get list of bookmarks
+            
+            # get list of groups
+            
+            # get list of credentials
+            
+            # get list of permissions
+            _permissions = [{'public_id':'pb_111', 'name': 'name1', 'api': '1234'}, {'public_id':'pb_222', 'name': 'name2', 'api': '5555'}]
+            
             # define default landing page
             if "active_tab" not in request.session:
-                request.session["active_tab"] = "folder"
-                active_tab  = "folder"
+                request.session["active_tab"] = "bookmarks"
+                active_tab  = "bookmarks"
             else:
                 active_tab = request.session.pop("active_tab")
-
             # toastr
             success_message = request.session.pop("success_message", None)
             error_message = request.session.pop("error_message", None)
             warning_message = request.session.pop("warning_message", None)
-
+            print('active', active_tab)
             return templates.TemplateResponse(
                 "index.html", 
                 {
@@ -188,7 +196,8 @@ async def index(request: Request):
                     "success_message": success_message, 
                     "error_message": error_message, 
                     "warning_message": warning_message,
-                    "active_tab": active_tab
+                    "active_tab": active_tab,
+                    "permissions": _permissions
                 }
             )
         request.session["warning_message"] = "You must log in to access"
@@ -229,6 +238,69 @@ async def user(request: Request):
     
     except Exception as e:
         service_logger().error(f"Error handling index page: {e}")
+        return RedirectResponse(url="/login", status_code=302)
+    
+
+@app.get("/{tabname}/create", dependencies=[Depends(class_base().token_dependency_check)])
+async def create_forms(request: Request, tabname: str = Path(...)):    
+    try:
+        token = request.cookies.get(class_configuration().return_app_jwt_token_label())
+
+        if token:
+            # get public id
+            login_public_id = class_base().return_auth_token_public_id(token)
+
+            if class_administration().return_user_role_by_public_id(login_public_id) != 'superadmin':
+                # Set warning message in session
+                request.session["warning_message"] = "Unauthorised access"
+                return RedirectResponse(url="/index", status_code=302)
+
+            # toastr
+            success_message = request.session.pop("success_message", None)
+            error_message = request.session.pop("error_message", None)
+            warning_message = request.session.pop("warning_message", None)
+            
+            request.session["active_tab"] = tabname
+            
+            # clear edited object if exits
+            if "edited_object" in request.session and request.session["edited_object"]:
+                request.session["edited_object"] = None
+                
+            # Data content to be passed to tml
+            context = {
+                "request": request,
+                "page_mode" : 'create',
+                "build_number": class_configuration().return_app_build_number(),
+                "current_user": class_administration().return_login_name_by_public_id(login_public_id),
+                "current_user_role": class_administration().return_user_role_by_public_id(login_public_id),
+                "select2_timezones": class_configuration().return_system_timezones(),
+                "success_message": success_message,
+                "error_message": error_message,
+                "warning_message": warning_message,
+                "active_tab" : tabname
+            }
+            # Dynamic render context according to tabname
+            match tabname:
+                case 'bookmarks':
+                    context['bookmarks'] = [] # get neccessary data for create form
+                case 'groups':
+                    context['groups'] = [] # get neccessary data for create form
+                case 'credentials':
+                    context['credentials'] = [] # get neccessary data for create form
+                case 'permissions':
+                    context['permissions'] = [] # get neccessary data for create form
+
+            # render page
+            return templates.TemplateResponse(
+                "index.html",
+                context
+            )
+        
+        request.session["warning_message"] = "You must log in to access"
+        return RedirectResponse(url="/login", status_code=302)
+    
+    except Exception as e:
+        service_logger().error(f"Error handling get create orchestration page: {e}")
         return RedirectResponse(url="/login", status_code=302)
 
 if __name__ == "__main__":

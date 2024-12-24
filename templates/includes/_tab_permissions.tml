@@ -1,0 +1,153 @@
+<div class="container-fluid container-grid p-4 pt-0">
+    <div class="row border-bottom border-secondary pb-2">
+        <div class="col-8 col-lg-4 d-flex justify-content-start align-items-center px-0">
+            <!-- start: [Authorization Check] -->
+            {% if current_user_role != 'readonly' %}
+                <form method="get" action="/permissions/create/">
+                    <button type="submit" class="btn btn-outline-light d-flex justify-content-start border-1 border-secondary align-items-center h-50px me-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" style="min-width: 150px !important;" title="Create">
+                        <i class='bx bx-plus fs-4 pe-1'></i> Create New
+                    </button>
+                </form>
+            {% endif %}
+            <!-- end: [Authorization Check] -->
+            <input type="text" class="search-input form-control border-1 border-secondary rounded-2 h-50px w-100 bg-dark text-light" placeholder="Search" style="min-width: 140px;max-width: 100% !important;padding-right:60px;">
+            <button type="button" class="btn-search-clear btn btn-outline-light shadow-none input-append-btn border-0 d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Clear" tabindex="-1">
+                <i class='bx bx-x fs-3'></i>
+            </button>
+        </div>
+        <div class="col-4 col-lg-8 ps-0 d-inline-grid align-items-center">
+            <div class="row m-0 h-100 d-flex justify-content-end">
+                <div class="col-4 col-lg-9 pe-0 d-none d-md-inline-flex align-items-center justify-content-end gap-2">
+                    <!--begin::Grid Switcher Tabs-->
+                    <ul class="grid-filter-switcher nav nav-tabs grid-buttons border border-1 rounded-pill border-secondary" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="view-as-table-btn btn btn-lg d-flex justify-content-center align-items-center border-1 rounded-start-pill active" data-bs-toggle="tab" data-bs-target="#tableView" role="tab" aria-controls="list" aria-selected="true">
+                                <i class='bx bx-list-ul fs-4 text-white' ></i>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="view-as-grid-btn btn btn-lg d-flex justify-content-center align-items-center border-1 rounded-end-pill" data-bs-toggle="tab" data-bs-target="#gridView" role="tab" aria-controls="grid" aria-selected="false">
+                                <i class='bx bx-grid-horizontal fs-4 text-white' ></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <!--end::Grid Switcher Tabs-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div id="tableView" class="tab-pane view-table fade table-responsive mt-1 show active" role="tabpanel">
+            <table class="table text-light table-hover align-middle bg-transparent" style="border-collapse: separate; border-spacing:0 15px;">
+                <thead>
+                    <tr>
+                        <th class="col-4 border-0 ps-4" scope="col">Name</th>
+                        <th class="col-4 border-0" scope="col">API Key</th>
+                        <th class="col-4 border-0" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permission in permissions %}
+                        <tr class="content-item-table fs-7" data-search="{{ permission.name }}">
+                            <td class="grid-bordered border-start cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#gridOffcanvas_{{permission.public_id}}">{{permission.name}}</td>
+                            <td class="cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#gridOffcanvas_{{permission.public_id}}">{{permission.api}}</td>
+                            <td>
+                                <div class="button-wrapper gap-2 d-flex align-items-center justify-content-center">
+                                    <!-- view offcanvas btn -->
+                                    <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#gridOffcanvas_{{permission.public_id}}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="View">
+                                        <i class='bx bx-dock-top fs-5'></i>
+                                    </button>
+                                    <!-- edit btn -->
+                                    <form method="post" action="/permissions/edit/{{ permission.public_id }}">
+                                        <input type="hidden" name="cyberpot_public_id" value="{{permission.public_id}}">
+                                        <button type="submit" class="btn btn-outline-light btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Edit">
+                                            <i class='bx bx-edit fs-5'></i>
+                                        </button>
+                                    </form>
+                                    <!-- delete btn -->
+                                    <form method="post" action="/permissions/delete/{{ permission.public_id }}">
+                                        <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Delete">
+                                            <i class='bx bx-trash-alt fs-5'></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="gridView" class="tab-pane view-grid fade mt-4" role="tabpanel">
+            <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-1 g-4 d-flex align-items-stretch">
+                {% for permission in permissions %}
+                    <div class="content-item-grid d-flex" data-search="{{ permission.name }}">
+                        <div class="col d-flex">
+                            <div class="card card-grid flex-grow-1 text-light rounded-0">
+                                <!-- A container for displaying information in the header section -->
+                                <div class="card-header py-4 d-flex align-items-center justify-content-between grid-bordered border-start">
+                                    <span class="fs-5 fw-light">{{permission.name}}</span>
+                                </div>
+                                <div class="card-body">
+                                    <p class="fw-lighter text-light"><span class="fw-normal">API Key:</span> {{permission.api}} </p>
+                                </div>
+                                <!-- CRUD Buttons -->
+                                <div class="card-footer w-100">
+                                    <div class="button-wrapper row m-0 h-100">
+                                        <!-- view offcanvas btn -->
+                                        <div class="col p-0">
+                                            <button type="button" class="btn btn-secondary shadow-none" data-bs-toggle="offcanvas" data-bs-target="#gridOffcanvas_{{permission.public_id}}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="View">
+                                                <i class='bx bx-dock-top fs-5'></i>
+                                            </button>
+                                        </div>
+                                        <!-- edit btn -->
+                                        <div class="col p-0">
+                                            <form method="post" action="/permissions/edit/{{ permission.public_id }}">
+                                                <input type="hidden" name="cyberpot_public_id" value="{{permission.public_id}}">
+                                                    <button type="submit" class="btn btn-secondary shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Edit">
+                                                        <i class='bx bx-edit fs-5'></i>
+                                                    </button>
+                                            </form>
+                                        </div>
+                                        <!-- delete btn -->
+                                        <div class="col p-0">
+                                            <form method="post" action="/permissions/delete/{{ permission.public_id }}">
+                                                <button type="button" class="btn btn-secondary shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Delete">
+                                                    <i class='bx bx-trash-alt fs-5'></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- view offcanvases -->
+    <div class="grid-offcanvas">
+        {% for permission in permissions %}
+            <div class="offcanvas offcanvas-bottom text-white border-top" tabindex="-1" id="gridOffcanvas_{{permission.public_id}}" aria-labelledby="gridOffcanvasLabel_{{permission.public_id}}" style="height: 50vh; width: 100vw;">
+                <div class="offcanvas-header bg-offcanvas-header py-2 h-60px">
+                    <span class="offcanvas-title fs-4 fw-light d-flex align-items-center align-content-center flex-wrap" id="gridOffcanvasLabel_{{permission.public_id}}">
+                        <i class='bx bx-detail fs-2 pe-1'></i> {{permission.name}}
+                    </span>
+                    <i class='dismiss-btn bx bx-x fs-1 link-light cursor-pointer nav-item-hover' data-bs-dismiss="offcanvas" aria-label="Close"></i>
+                </div>
+                <div class="offcanvas-body bg-offcanvas-body overlay-scroll">
+                    <div class="row">
+                        <div class="col">
+                            <p class="fw-lighter text-light"><span class="fw-normal">API Key:</span> {{permission.api}} </p>
+                        </div>
+                        <div class="col">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
