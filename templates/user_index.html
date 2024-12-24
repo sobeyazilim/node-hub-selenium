@@ -1,0 +1,143 @@
+<!--
+=========================================================
+* Node-hub Selenium - v3.0.1
+=========================================================
+* Product Page: https://www.sobeyazilim.com.tr/siberat
+* Copyright 2024 SOBE YAZILIM (https://www.sobeyazilim.com.tr/)
+* Coded by Murat BULBUL (murat.bulbul@sobeyazilim.com.tr)
+ =========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-preloader="enable" data-theme="dark">
+    <head>
+         <!-- Page title -->
+        <title>Bookmark Connection</title>
+
+        <!-- Include libraries -->
+        {% include 'includes/_library_common.tml' %}
+
+        <!-- Include Common CSS -->
+        <link href="/static/common.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
+
+        <!-- Include Custom CSS -->
+        <link href="/static/index.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous"/>
+
+        <!-- Include Grid CSS -->
+        <link href="/static/grid.css?build={{build_number}}" rel="stylesheet" crossorigin="anonymous" />
+        
+    </head>
+    <body class="platform">
+        <!-- Preloader -->
+        {% include 'includes/_preloader.tml' %}
+
+        <!--  start: Header top [menu-header]-->
+        <div class="container-fluid fixed-top">
+            <div class="row py-0 top-bar-bg h-60px">
+                
+                <!--  Header top left -->
+                <div class="col-9 m-0 ps-3  d-flex justify-content-start align-items-center">
+                    <i class='bx bx-book-bookmark fs-2 pe-1 text-light'></i>
+                    <span class="fs-4 text-light">
+                        <strong>
+                            Bookmarks Connection Page
+                        </strong>
+                    </span>
+                </div>
+
+                <!--  Header top right -->
+                <div class="col-3 m-0 pe-0  d-flex justify-content-end align-items-center">
+                    {% include 'includes/_top-navbar-right.tml' %}
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Content Start -->
+        <div class="container-fluid container-grid p-4 mt-5">
+            <div class="row border-bottom border-secondary pb-2">
+                <div class="col-8 col-lg-4 d-flex justify-content-start align-items-center px-0 mb-1 position-relative">
+                    <input type="text" 
+                        class="search-input form-control border-1 border-secondary rounded-2 h-50px w-100 bg-dark text-light pe-5" 
+                        placeholder="Search" 
+                        style="min-width: 140px; max-width: 100% !important;">
+                    <button type="button" 
+                            class="btn-search-clear btn btn-outline-light shadow-none input-append-btn border-0 d-flex justify-content-center align-items-center position-absolute top-50 end-0 translate-middle-y me-1" 
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="right" 
+                            data-bs-trigger="hover" 
+                            title="Clear" 
+                            tabindex="-1">
+                        <i class='bx bx-x fs-3 text-dark'></i>
+                    </button>
+                </div>
+                <div class="col-4 col-lg-8 pe-0 d-none d-md-inline-flex align-items-center justify-content-end gap-2">
+                </div>
+            </div>
+
+            <!-- Tab Content-->
+            <div class="tab-content">
+                <!-- Grid View-->
+                <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 d-flex align-items-stretch mt-2">
+                    {# {% for automation in automation_action %} #}
+                        <div class="content-item-grid d-flex" data-type="" data-search="">
+                            <div class="col d-flex">
+                                <div class="card card-grid flex-grow-1 text-light rounded-0">
+                                    <!-- A container for displaying information in the header section -->
+                                    <div class="card-header py-4 d-flex align-items-center justify-content-between grid-bordered border-start">
+                                        <span class="fs-5 fw-bold text-gray-900"> TEST_NAME </span>
+                                        <span class="badge fs-7">
+                                            <!--  Bookmark Connection true-false -->
+                                            <i class='bx bx-unlink fs-3'></i>
+                                            <i class='bx bx-link fs-3'></i>
+                                        </span> 
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="text-secondary mt-2"><span class="fw-bold text-light">Description:</span> TEST Description </p>
+                                    </div>
+                                    <!-- CRUD Buttons -->
+                                    <div class="card-footer w-100">
+                                        <div class="button-wrapper row m-0 h-100">
+                                            {# <div class="col p-0">
+                                                <!-- view offcanvas btn -->
+                                                <button type="button" class="btn btn-secondary shadow-none" data-bs-toggle="offcanvas" data-bs-target="#gridOffcanvas_" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="View">
+                                                    <i class='bx bx-dock-top fs-5'></i>
+                                                </button>
+                                            </div> #}
+                                            <div class="col p-0">
+                                                <!-- edit btn -->
+                                                <form method="post" action="/automation/action/edit/">
+                                                    <button type="submit" class="btn btn-secondary shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Edit">
+                                                        <i class='bx bx-link-external fs-5'></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {# {% endfor %} #}
+                </div>
+                <!-- Grid View End-->
+            </div>
+            <!-- Tab Content End-->
+        </div>  
+        <!-- Content End -->
+
+
+        <!-- Include Common JS -->
+        <script src="/static/common.js?build={{build_number}}"></script>  
+        
+        <!-- Include Grid JS -->
+        <script src="/static/grid.js?build={{build_number}}"></script>
+
+        <!-- Page Level JS -->
+        {% include 'includesJS/_toastr-options.tml' %}
+
+        <!-- Page Level TML -->
+        {% include 'includes/_footer.tml' %}
+
+    </body>
+</html>

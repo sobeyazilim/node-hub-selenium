@@ -189,6 +189,39 @@ async def index(request: Request):
     except Exception as e:
         service_logger().error(f"Error handling index page: {e}")
         return RedirectResponse(url="/login", status_code=302)
+    
+@app.get("/user", dependencies=[Depends(class_base().token_dependency_check)])
+async def user(request: Request):
+    try:
+        token = request.cookies.get(class_configuration().return_app_jwt_token_label())
+
+        if token:
+            # get public id
+            public_id = class_base().return_auth_token_public_id(token)
+
+            # toastr
+            success_message = request.session.pop("success_message", None)
+            error_message = request.session.pop("error_message", None)
+            warning_message = request.session.pop("warning_message", None)
+
+            return templates.TemplateResponse(
+                "user_index.html", 
+                {
+                    "request": request, 
+                    "build_number": class_configuration().return_app_build_number(), 
+                    "current_user": class_administration().return_login_name_by_public_id(public_id),
+                    "current_user_role": class_administration().return_user_role_by_public_id(public_id),
+                    "success_message": success_message, 
+                    "error_message": error_message, 
+                    "warning_message": warning_message
+                }
+            )
+        request.session["warning_message"] = "You must log in to access"
+        return RedirectResponse(url="/login", status_code=302)
+    
+    except Exception as e:
+        service_logger().error(f"Error handling index page: {e}")
+        return RedirectResponse(url="/login", status_code=302)
 
 if __name__ == "__main__":
 
